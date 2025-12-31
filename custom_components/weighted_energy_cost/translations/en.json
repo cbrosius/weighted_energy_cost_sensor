@@ -10,7 +10,7 @@
             },
             "grid_import": {
                 "title": "Grid Import Source",
-                "description": "How should we track the energy coming from the grid? You can use a sensor from your Energy Dashboard, any power (W) or energy (kWh) sensor, or a fixed value if you don't have monitoring.",
+                "description": "How should we track the energy coming from the grid?",
                 "data": {
                     "grid_import_source_type": "Select Source Type"
                 }
@@ -24,7 +24,7 @@
             },
             "grid_price": {
                 "title": "Grid Price Source",
-                "description": "Where does the current price for grid electricity come from? Most users with dynamic tariffs use a price sensor here.",
+                "description": "Where does the current price for grid electricity come from?",
                 "data": {
                     "grid_import_price_type": "Select Price Type"
                 }
@@ -38,7 +38,7 @@
             },
             "solar": {
                 "title": "Solar Source",
-                "description": "How should we track your solar production? This is used to calculate the 'free' or lower-cost portion of your energy mix.",
+                "description": "How should we track your solar production?",
                 "data": {
                     "solar_source_type": "Select Source Type"
                 }
@@ -52,7 +52,7 @@
             },
             "solar_price": {
                 "title": "Solar Price Source",
-                "description": "What is the cost of your solar energy? Usually this is 0.0, but some users might want to account for missed feed-in compensation or production costs.",
+                "description": "What is the cost of your solar energy?",
                 "data": {
                     "solar_price_type": "Select Price Type"
                 }
@@ -66,7 +66,7 @@
             },
             "battery_power": {
                 "title": "Battery Power Source",
-                "description": "Select the sensor that shows current battery power. Positive values should represent discharging (providing energy), and negative values should represent charging (storing energy).",
+                "description": "Select the sensor that shows current battery power.",
                 "data": {
                     "battery_power_source_type": "Select Source Type"
                 }
@@ -80,7 +80,7 @@
             },
             "battery_energy": {
                 "title": "Battery Energy Source",
-                "description": "Finally, we need to know the current amount of energy stored in your battery. This is used as the denominator to track the average cost of the stored energy.",
+                "description": "Finally, we need to know the current amount of energy stored in your battery.",
                 "data": {
                     "battery_energy_source_type": "Select Source Type"
                 }
@@ -101,7 +101,7 @@
         "step": {
             "grid_import": {
                 "title": "Grid Import Source",
-                "description": "How should we track the energy coming from the grid? You can use a sensor from your Energy Dashboard, any power (W) or energy (kWh) sensor, or a fixed value if you don't have monitoring.",
+                "description": "How should we track the energy coming from the grid?",
                 "data": {
                     "grid_import_source_type": "Select Source Type"
                 }
@@ -115,7 +115,7 @@
             },
             "grid_price": {
                 "title": "Grid Price Source",
-                "description": "Where does the current price for grid electricity come from? Most users with dynamic tariffs use a price sensor here.",
+                "description": "Where does the current price for grid electricity come from?",
                 "data": {
                     "grid_import_price_type": "Select Price Type"
                 }
@@ -129,7 +129,7 @@
             },
             "solar": {
                 "title": "Solar Source",
-                "description": "How should we track your solar production? This is used to calculate the 'free' or lower-cost portion of your energy mix.",
+                "description": "How should we track your solar production?",
                 "data": {
                     "solar_source_type": "Select Source Type"
                 }
@@ -143,7 +143,7 @@
             },
             "solar_price": {
                 "title": "Solar Price Source",
-                "description": "What is the cost of your solar energy? Usually this is 0.0, but some users might want to account for missed feed-in compensation or production costs.",
+                "description": "What is the cost of your solar energy?",
                 "data": {
                     "solar_price_type": "Select Price Type"
                 }
@@ -157,7 +157,7 @@
             },
             "battery_power": {
                 "title": "Battery Power Source",
-                "description": "Select the sensor that shows current battery power. Positive values should represent discharging (providing energy), and negative values should represent charging (storing energy).",
+                "description": "Select the sensor that shows current battery power.",
                 "data": {
                     "battery_power_source_type": "Select Source Type"
                 }
@@ -171,7 +171,7 @@
             },
             "battery_energy": {
                 "title": "Battery Energy Source",
-                "description": "Finally, we need to know the current amount of energy stored in your battery. This is used as the denominator to track the average cost of the stored energy.",
+                "description": "Finally, we need to know the current amount of energy stored in your battery.",
                 "data": {
                     "battery_energy_source_type": "Select Source Type"
                 }
@@ -181,6 +181,24 @@
                 "description": "Please select the sensor that provides the current state of charge in kWh.",
                 "data": {
                     "battery_energy_source_value": "Select Sensor or Enter kWh"
+                }
+            }
+        }
+    },
+    "selector": {
+        "source_type": {
+            "options": {
+                "entity": {
+                    "name": "Sensor Entity",
+                    "description": "Use any power (W) or energy (kWh) sensor from your existing devices."
+                },
+                "fixed": {
+                    "name": "Fixed Value",
+                    "description": "Use a constant numeric value if you don't have a sensor or want to test hardcoded values."
+                },
+                "dashboard": {
+                    "name": "Energy Dashboard Entity",
+                    "description": "Use a specialized energy sensor already configured in your Home Assistant Energy Dashboard."
                 }
             }
         }

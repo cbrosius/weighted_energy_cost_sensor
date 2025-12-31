@@ -89,7 +89,9 @@ class WeightedEnergyCostConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                         key, default=self.data.get(key, default)
                     ): selector.SelectSelector(
                         selector.SelectSelectorConfig(
-                            options=options, mode=selector.SelectSelectorMode.DROPDOWN
+                            options=options,
+                            mode=selector.SelectSelectorMode.LIST,
+                            translation_key="source_type",
                         )
                     )
                 }
@@ -293,7 +295,9 @@ class WeightedEnergyCostOptionsFlow(config_entries.OptionsFlow):
                         key, default=self.data.get(key, default)
                     ): selector.SelectSelector(
                         selector.SelectSelectorConfig(
-                            options=options, mode=selector.SelectSelectorMode.DROPDOWN
+                            options=options,
+                            mode=selector.SelectSelectorMode.LIST,
+                            translation_key="source_type",
                         )
                     )
                 }

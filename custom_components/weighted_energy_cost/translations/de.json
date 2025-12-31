@@ -10,7 +10,7 @@
             },
             "grid_import": {
                 "title": "Netzbezug Quelle",
-                "description": "Wie sollen wir den Strom verfolgen, der aus dem Netz kommt? Sie können einen Sensor aus Ihrem Energie-Dashboard, jeden Leistungs- (W) oder Energie-Sensor (kWh) oder einen festen Wert verwenden.",
+                "description": "Wie sollen wir den Strom verfolgen, der aus dem Netz kommt?",
                 "data": {
                     "grid_import_source_type": "Quelltyp auswählen"
                 }
@@ -24,7 +24,7 @@
             },
             "grid_price": {
                 "title": "Netzpreis Quelle",
-                "description": "Woher kommt der aktuelle Preis für den Netzstrom? Die meisten Benutzer mit dynamischen Tarifen verwenden hier einen Preissensor.",
+                "description": "Woher kommt der aktuelle Preis für den Netzstrom?",
                 "data": {
                     "grid_import_price_type": "Preistyp auswählen"
                 }
@@ -38,7 +38,7 @@
             },
             "solar": {
                 "title": "Solar Quelle",
-                "description": "Wie sollen wir Ihre Solarproduktion verfolgen? Dies wird verwendet, um den 'kostenlosen' oder kostengünstigeren Teil Ihres Energiemixes zu berechnen.",
+                "description": "Wie sollen wir Ihre Solarproduktion verfolgen?",
                 "data": {
                     "solar_source_type": "Quelltyp auswählen"
                 }
@@ -52,7 +52,7 @@
             },
             "solar_price": {
                 "title": "Solarpreis Quelle",
-                "description": "Was kostet Ihre Solarenergie? Normalerweise ist dies 0.0, aber einige Benutzer möchten evtl. entgangene Einspeisevergütungen oder Produktionskosten berücksichtigen.",
+                "description": "Was kostet Ihre Solarenergie?",
                 "data": {
                     "solar_price_type": "Preistyp auswählen"
                 }
@@ -66,7 +66,7 @@
             },
             "battery_power": {
                 "title": "Batterieleistung Quelle",
-                "description": "Wählen Sie den Sensor aus, der die aktuelle Batterieleistung anzeigt. Positive Werte sollten das Entladen (Energie bereitstellen) und negative Werte das Laden (Energie speichern) darstellen.",
+                "description": "Wählen Sie den Sensor aus, der die aktuelle Batterieleistung anzeigt.",
                 "data": {
                     "battery_power_source_type": "Quelltyp auswählen"
                 }
@@ -80,7 +80,7 @@
             },
             "battery_energy": {
                 "title": "Batterieenergie Quelle",
-                "description": "Schließlich müssen wir wissen, wie viel Energie aktuell in Ihrer Batterie gespeichert ist. Dies wird als Nenner verwendet, um die durchschnittlichen Kosten der gespeicherten Energie zu verfolgen.",
+                "description": "Schließlich müssen wir wissen, wie viel Energie aktuell in Ihrer Batterie gespeichert ist.",
                 "data": {
                     "battery_energy_source_type": "Quelltyp auswählen"
                 }
@@ -101,7 +101,7 @@
         "step": {
             "grid_import": {
                 "title": "Netzbezug Quelle",
-                "description": "Wie sollen wir den Strom verfolgen, der aus dem Netz kommt? Sie können einen Sensor aus Ihrem Energie-Dashboard, jeden Leistungs- (W) oder Energie-Sensor (kWh) oder einen festen Wert verwenden.",
+                "description": "Wie sollen wir den Strom verfolgen, der aus dem Netz kommt?",
                 "data": {
                     "grid_import_source_type": "Quelltyp auswählen"
                 }
@@ -115,7 +115,7 @@
             },
             "grid_price": {
                 "title": "Netzpreis Quelle",
-                "description": "Woher kommt der aktuelle Preis für den Netzstrom? Die meisten Benutzer mit dynamischen Tarifen verwenden hier einen Preissensor.",
+                "description": "Woher kommt der aktuelle Preis für den Netzstrom?",
                 "data": {
                     "grid_import_price_type": "Preistyp auswählen"
                 }
@@ -129,7 +129,7 @@
             },
             "solar": {
                 "title": "Solar Quelle",
-                "description": "Wie sollen wir Ihre Solarproduktion verfolgen? Dies wird verwendet, um den 'kostenlosen' oder kostengünstigeren Teil Ihres Energiemixes zu berechnen.",
+                "description": "Wie sollen wir Ihre Solarproduktion verfolgen?",
                 "data": {
                     "solar_source_type": "Quelltyp auswählen"
                 }
@@ -143,7 +143,7 @@
             },
             "solar_price": {
                 "title": "Solarpreis Quelle",
-                "description": "Was kostet Ihre Solarenergie? Normalerweise ist dies 0.0, aber einige Benutzer möchten evtl. entgangene Einspeisevergütungen oder Produktionskosten berücksichtigen.",
+                "description": "Was kostet Ihre Solarenergie?",
                 "data": {
                     "solar_price_type": "Preistyp auswählen"
                 }
@@ -157,7 +157,7 @@
             },
             "battery_power": {
                 "title": "Batterieleistung Quelle",
-                "description": "Wählen Sie den Sensor aus, der die aktuelle Batterieleistung anzeigt. Positive Werte sollten das Entladen (Energie bereitstellen) und negative Werte das Laden (Energie speichern) darstellen.",
+                "description": "Wählen Sie den Sensor aus, der die aktuelle Batterieleistung anzeigt.",
                 "data": {
                     "battery_power_source_type": "Quelltyp auswählen"
                 }
@@ -171,7 +171,7 @@
             },
             "battery_energy": {
                 "title": "Batterieenergie Quelle",
-                "description": "Schließlich müssen wir wissen, wie viel Energie aktuell in Ihrer Batterie gespeichert ist. Dies wird als Nenner verwendet, um die durchschnittlichen Kosten der gespeicherten Energie zu verfolgen.",
+                "description": "Schließlich müssen wir wissen, wie viel Energie aktuell in Ihrer Batterie gespeichert ist.",
                 "data": {
                     "battery_energy_source_type": "Quelltyp auswählen"
                 }
@@ -181,6 +181,24 @@
                 "description": "Bitte wählen Sie den Sensor aus, der den aktuellen Ladezustand in kWh liefert.",
                 "data": {
                     "battery_energy_source_value": "Sensor auswählen oder kWh eingeben"
+                }
+            }
+        }
+    },
+    "selector": {
+        "source_type": {
+            "options": {
+                "entity": {
+                    "name": "Sensor-Entität",
+                    "description": "Verwenden Sie einen beliebigen Leistungs- (W) oder Energie-Sensor (kWh) Ihrer vorhandenen Geräte."
+                },
+                "fixed": {
+                    "name": "Festwert",
+                    "description": "Verwenden Sie einen konstanten numerischen Wert, wenn Sie keinen Sensor haben."
+                },
+                "dashboard": {
+                    "name": "Energie-Dashboard-Entität",
+                    "description": "Verwenden Sie einen spezialisierten Energiesensor, der bereits in Ihrem Home Assistant Energie-Dashboard konfiguriert ist."
                 }
             }
         }
