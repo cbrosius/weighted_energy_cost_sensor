@@ -48,7 +48,7 @@ class WeightedEnergyCostConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         config_entry: config_entries.ConfigEntry,
     ) -> WeightedEnergyCostOptionsFlow:
         """Get the options flow for this handler."""
-        return WeightedEnergyCostOptionsFlow(config_entry)
+        return WeightedEnergyCostOptionsFlow()
 
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
@@ -102,7 +102,6 @@ class WeightedEnergyCostConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         current_val = self.data.get(value_key)
 
         if source_type == SOURCE_TYPE_FIXED:
-            # Safety check: if current_val is a sensor name (str starting with sensor.), default to 0.0
             default_num = 0.0
             if current_val is not None:
                 try:
@@ -258,17 +257,20 @@ class WeightedEnergyCostConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 class WeightedEnergyCostOptionsFlow(config_entries.OptionsFlow):
     """Handle options flow for Weighted Energy Cost Sensor."""
 
-    def __init__(self, config_entry: config_entries.ConfigEntry) -> None:
+    def __init__(self) -> None:
         """Initialize options flow."""
-        self._config_entry = config_entry
-        self.data = dict(config_entry.data)
-        if config_entry.options:
-            self.data.update(config_entry.options)
+        self.data: dict[str, Any] = {}
 
     async def async_step_init(
         self, user_input: dict[str, Any] | None = None
     ) -> FlowResult:
         """Manage the options."""
+        # Initialize data from the config entry on first call
+        if not self.data:
+            self.data = dict(self.config_entry.data)
+            if self.config_entry.options:
+                self.data.update(self.config_entry.options)
+
         return await self.async_step_grid_import()
 
     async def _async_show_type_step(
