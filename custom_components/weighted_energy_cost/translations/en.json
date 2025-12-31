@@ -1,0 +1,87 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "General Settings",
+                "data": {
+                    "name": "Name"
+                }
+            },
+            "grid_import": {
+                "title": "Grid Import Source",
+                "data": {
+                    "grid_import_source_type": "Select Source Type"
+                }
+            },
+            "grid_import_value": {
+                "title": "Grid Import Value",
+                "data": {
+                    "grid_import_source_value": "Select Sensor or Enter Value"
+                }
+            },
+            "grid_price": {
+                "title": "Grid Price Source",
+                "data": {
+                    "grid_import_price_type": "Select Price Type"
+                }
+            },
+            "grid_price_value": {
+                "title": "Grid Price Value",
+                "data": {
+                    "grid_import_price_value": "Select Sensor or Enter €/kWh"
+                }
+            },
+            "solar": {
+                "title": "Solar Source",
+                "data": {
+                    "solar_source_type": "Select Source Type"
+                }
+            },
+            "solar_value": {
+                "title": "Solar Value",
+                "data": {
+                    "solar_source_value": "Select Sensor or Enter Value"
+                }
+            },
+            "solar_price": {
+                "title": "Solar Price Source",
+                "data": {
+                    "solar_price_type": "Select Price Type"
+                }
+            },
+            "solar_price_value": {
+                "title": "Solar Price Value",
+                "data": {
+                    "solar_price_value": "Select Sensor or Enter €/kWh"
+                }
+            },
+            "battery_power": {
+                "title": "Battery Power Source",
+                "data": {
+                    "battery_power_source_type": "Select Source Type"
+                }
+            },
+            "battery_power_value": {
+                "title": "Battery Power Value",
+                "data": {
+                    "battery_power_source_value": "Select Sensor or Enter Value"
+                }
+            },
+            "battery_energy": {
+                "title": "Battery Energy Source",
+                "data": {
+                    "battery_energy_source_type": "Select Source Type"
+                }
+            },
+            "battery_energy_value": {
+                "title": "Battery Energy Value",
+                "data": {
+                    "battery_energy_source_value": "Select Sensor or Enter Value"
+                }
+            }
+        },
+        "error": {
+            "unknown": "Unexpected error"
+        }
+    }
+}

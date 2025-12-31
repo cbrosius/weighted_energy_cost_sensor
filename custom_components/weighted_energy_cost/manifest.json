@@ -1,0 +1,9 @@
+{
+  "domain": "weighted_energy_cost",
+  "name": "Weighted Energy Cost Sensor",
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://github.com/cbrosius/weighted_energy_cost_sensor",
+  "iot_class": "local_polling",
+  "version": "1.0.0"
+}
