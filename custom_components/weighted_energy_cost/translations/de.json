@@ -96,5 +96,93 @@
         "error": {
             "unknown": "Unerwarteter Fehler"
         }
+    },
+    "options": {
+        "step": {
+            "grid_import": {
+                "title": "Netzbezug Quelle",
+                "description": "Wie sollen wir den Strom verfolgen, der aus dem Netz kommt? Sie können einen Sensor aus Ihrem Energie-Dashboard, jeden Leistungs- (W) oder Energie-Sensor (kWh) oder einen festen Wert verwenden.",
+                "data": {
+                    "grid_import_source_type": "Quelltyp auswählen"
+                }
+            },
+            "grid_import_value": {
+                "title": "Netzbezug Wert",
+                "description": "Bitte wählen Sie den Sensor aus oder geben Sie den Wert für Ihren Netzbezug ein.",
+                "data": {
+                    "grid_import_source_value": "Sensor auswählen oder Wert eingeben"
+                }
+            },
+            "grid_price": {
+                "title": "Netzpreis Quelle",
+                "description": "Woher kommt der aktuelle Preis für den Netzstrom? Die meisten Benutzer mit dynamischen Tarifen verwenden hier einen Preissensor.",
+                "data": {
+                    "grid_import_price_type": "Preistyp auswählen"
+                }
+            },
+            "grid_price_value": {
+                "title": "Netzpreis Wert",
+                "description": "Bitte wählen Sie den Sensor aus oder geben Sie den Festpreis in €/kWh ein.",
+                "data": {
+                    "grid_import_price_value": "Sensor auswählen oder €/kWh eingeben"
+                }
+            },
+            "solar": {
+                "title": "Solar Quelle",
+                "description": "Wie sollen wir Ihre Solarproduktion verfolgen? Dies wird verwendet, um den 'kostenlosen' oder kostengünstigeren Teil Ihres Energiemixes zu berechnen.",
+                "data": {
+                    "solar_source_type": "Quelltyp auswählen"
+                }
+            },
+            "solar_value": {
+                "title": "Solar Wert",
+                "description": "Bitte wählen Sie den Sensor aus oder geben Sie den Wert für Ihre Solarproduktion ein.",
+                "data": {
+                    "solar_source_value": "Sensor auswählen oder Wert eingeben"
+                }
+            },
+            "solar_price": {
+                "title": "Solarpreis Quelle",
+                "description": "Was kostet Ihre Solarenergie? Normalerweise ist dies 0.0, aber einige Benutzer möchten evtl. entgangene Einspeisevergütungen oder Produktionskosten berücksichtigen.",
+                "data": {
+                    "solar_price_type": "Preistyp auswählen"
+                }
+            },
+            "solar_price_value": {
+                "title": "Solarpreis Wert",
+                "description": "Bitte wählen Sie den Sensor aus oder geben Sie den Solarenergiepreis in €/kWh ein.",
+                "data": {
+                    "solar_price_value": "Sensor auswählen oder €/kWh eingeben"
+                }
+            },
+            "battery_power": {
+                "title": "Batterieleistung Quelle",
+                "description": "Wählen Sie den Sensor aus, der die aktuelle Batterieleistung anzeigt. Positive Werte sollten das Entladen (Energie bereitstellen) und negative Werte das Laden (Energie speichern) darstellen.",
+                "data": {
+                    "battery_power_source_type": "Quelltyp auswählen"
+                }
+            },
+            "battery_power_value": {
+                "title": "Batterieleistung Wert",
+                "description": "Bitte wählen Sie den Sensor aus oder geben Sie den Wert für die Batterieleistung (W oder kW) ein.",
+                "data": {
+                    "battery_power_source_value": "Sensor auswählen oder Wert eingeben"
+                }
+            },
+            "battery_energy": {
+                "title": "Batterieenergie Quelle",
+                "description": "Schließlich müssen wir wissen, wie viel Energie aktuell in Ihrer Batterie gespeichert ist. Dies wird als Nenner verwendet, um die durchschnittlichen Kosten der gespeicherten Energie zu verfolgen.",
+                "data": {
+                    "battery_energy_source_type": "Quelltyp auswählen"
+                }
+            },
+            "battery_energy_value": {
+                "title": "Batterieenergie Wert",
+                "description": "Bitte wählen Sie den Sensor aus, der den aktuellen Ladezustand in kWh liefert.",
+                "data": {
+                    "battery_energy_source_value": "Sensor auswählen oder kWh eingeben"
+                }
+            }
+        }
     }
 }
