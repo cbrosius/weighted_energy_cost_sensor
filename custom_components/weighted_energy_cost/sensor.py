@@ -13,8 +13,6 @@ from homeassistant.components.sensor import (
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import (
     ATTR_UNIT_OF_MEASUREMENT,
-    UnitOfEnergy,
-    UnitOfPower,
 )
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
@@ -38,6 +36,7 @@ from .const import (
     CONF_BATTERY_ENERGY_SOURCE_VALUE,
     SOURCE_TYPE_ENTITY,
     SOURCE_TYPE_FIXED,
+    SOURCE_TYPE_DASHBOARD,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -69,6 +68,9 @@ class WeightedEnergyCostSensor(RestoreEntity, SensorEntity):
         self._state = 0.0
         self._total_battery_cost = 0.0
         self._last_update = None
+
+        # Track previous energy values for rate calculation
+        self._last_energy_values: dict[str, float] = {}
 
         self._entities_to_track = []
         self._setup_entities()
@@ -118,17 +120,16 @@ class WeightedEnergyCostSensor(RestoreEntity, SensorEntity):
         """Handle tracked entity state change."""
         self._update_values_and_calculate()
 
-    def _get_kw_value(self, type_key, value_key):
+    def _get_kw_value(self, type_key, value_key, dt_hours):
         """Get value and normalize to kW."""
         t = self.entry.data.get(type_key)
         v = self.entry.data.get(value_key)
 
         if t == SOURCE_TYPE_FIXED:
             try:
-                return (
-                    float(v) / 1000.0
-                )  # Support fixed Watts? Let's assume input is Watts for fixed if > 10
-                # Actually, better to just take the float.
+                # For fixed values, we assume it's kW if small, W if > 10.
+                val = float(v)
+                return val / 1000.0 if val > 10 else val
             except (ValueError, TypeError):
                 return 0.0
 
@@ -138,10 +139,27 @@ class WeightedEnergyCostSensor(RestoreEntity, SensorEntity):
 
         try:
             val = float(state.state)
+            device_class = state.attributes.get("device_class")
             unit = state.attributes.get(ATTR_UNIT_OF_MEASUREMENT, "")
+
+            # If it's an energy sensor, calculate rate
+            if device_class == SensorDeviceClass.ENERGY or unit.lower() in [
+                "kwh",
+                "mwh",
+            ]:
+                last_val = self._last_energy_values.get(v)
+                self._last_energy_values[v] = val
+                if last_val is not None and dt_hours > 0:
+                    delta = val - last_val
+                    if delta < 0:  # Handle reset
+                        return 0.0
+                    return delta / dt_hours
+                return 0.0
+
+            # If it's power, just convert to kW
             if unit.lower() == "w":
                 return val / 1000.0
-            return val  # Already kW or unknown
+            return val
         except ValueError:
             return 0.0
 
@@ -187,20 +205,23 @@ class WeightedEnergyCostSensor(RestoreEntity, SensorEntity):
             return
 
         dt = (now - self._last_update).total_seconds() / 3600.0  # hours
-        if dt <= 0:
+        # We allow small dt for energy calculation, but it needs to be > 0
+        if dt < 0.0001:  # less than ~0.3 seconds
             return
 
         # 1. Fetch current values (kW and Price)
         grid_kw = self._get_kw_value(
-            CONF_GRID_IMPORT_SOURCE_TYPE, CONF_GRID_IMPORT_SOURCE_VALUE
+            CONF_GRID_IMPORT_SOURCE_TYPE, CONF_GRID_IMPORT_SOURCE_VALUE, dt
         )
         grid_price = self._get_price(
             CONF_GRID_IMPORT_PRICE_TYPE, CONF_GRID_IMPORT_PRICE_VALUE
         )
-        solar_kw = self._get_kw_value(CONF_SOLAR_SOURCE_TYPE, CONF_SOLAR_SOURCE_VALUE)
+        solar_kw = self._get_kw_value(
+            CONF_SOLAR_SOURCE_TYPE, CONF_SOLAR_SOURCE_VALUE, dt
+        )
         solar_price = self._get_price(CONF_SOLAR_PRICE_TYPE, CONF_SOLAR_PRICE_VALUE)
         bat_pow_kw = self._get_kw_value(
-            CONF_BATTERY_POWER_SOURCE_TYPE, CONF_BATTERY_POWER_SOURCE_VALUE
+            CONF_BATTERY_POWER_SOURCE_TYPE, CONF_BATTERY_POWER_SOURCE_VALUE, dt
         )
         bat_energy_kwh = self._get_energy_kwh(
             CONF_BATTERY_ENERGY_SOURCE_TYPE, CONF_BATTERY_ENERGY_SOURCE_VALUE
@@ -245,8 +266,9 @@ class WeightedEnergyCostSensor(RestoreEntity, SensorEntity):
             ) / total_supply_kw
             self._state = round(weighted_cost, 4)
         else:
-            # If no supply, maybe default to grid price or last price
-            pass
+            # If no supply, default to grid price if available
+            if grid_price > 0:
+                self._state = round(grid_price, 4)
 
         # Update attributes for transparency
         self._attr_extra_state_attributes = {

@@ -6,6 +6,7 @@ from typing import Any
 import voluptuous as vol
 
 from homeassistant import config_entries
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.core import callback
 from homeassistant.data_entry_flow import FlowResult
 from homeassistant.helpers import selector
@@ -100,8 +101,28 @@ class WeightedEnergyCostConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     )
                 }
             )
-        else:
-            schema = vol.Schema({vol.Required(value_key): selector.EntitySelector()})
+        elif source_type == SOURCE_TYPE_DASHBOARD:
+            # Filter specifically for energy sensors likely used in dashboard
+            schema = vol.Schema(
+                {
+                    vol.Required(value_key): selector.EntitySelector(
+                        selector.EntitySelectorConfig(
+                            domain="sensor",
+                            device_class=[
+                                SensorDeviceClass.ENERGY,
+                            ],
+                        )
+                    )
+                }
+            )
+        else:  # SOURCE_TYPE_ENTITY
+            schema = vol.Schema(
+                {
+                    vol.Required(value_key): selector.EntitySelector(
+                        selector.EntitySelectorConfig(domain="sensor")
+                    )
+                }
+            )
 
         return self.async_show_form(
             step_id=step_id, data_schema=schema, last_step=False
