@@ -260,7 +260,7 @@ class WeightedEnergyCostOptionsFlow(config_entries.OptionsFlow):
 
     def __init__(self, config_entry: config_entries.ConfigEntry) -> None:
         """Initialize options flow."""
-        self.config_entry = config_entry
+        self._config_entry = config_entry
         self.data = dict(config_entry.data)
         if config_entry.options:
             self.data.update(config_entry.options)
