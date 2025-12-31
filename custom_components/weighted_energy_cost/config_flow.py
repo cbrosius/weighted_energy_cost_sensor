@@ -102,11 +102,18 @@ class WeightedEnergyCostConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         current_val = self.data.get(value_key)
 
         if source_type == SOURCE_TYPE_FIXED:
+            # Safety check: if current_val is a sensor name (str starting with sensor.), default to 0.0
+            default_num = 0.0
+            if current_val is not None:
+                try:
+                    default_num = float(current_val)
+                except (ValueError, TypeError):
+                    default_num = 0.0
+
             schema = vol.Schema(
                 {
                     vol.Required(
-                        value_key,
-                        default=float(current_val) if current_val is not None else 0.0,
+                        value_key, default=default_num
                     ): selector.NumberSelector(
                         selector.NumberSelectorConfig(
                             mode=selector.NumberSelectorMode.BOX, step=0.001
@@ -118,7 +125,8 @@ class WeightedEnergyCostConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             schema = vol.Schema(
                 {
                     vol.Required(
-                        value_key, default=current_val
+                        value_key,
+                        default=current_val if isinstance(current_val, str) else None,
                     ): selector.EntitySelector(
                         selector.EntitySelectorConfig(
                             domain="sensor", device_class=SensorDeviceClass.ENERGY
@@ -130,7 +138,8 @@ class WeightedEnergyCostConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             schema = vol.Schema(
                 {
                     vol.Required(
-                        value_key, default=current_val
+                        value_key,
+                        default=current_val if isinstance(current_val, str) else None,
                     ): selector.EntitySelector(
                         selector.EntitySelectorConfig(domain="sensor")
                     )
@@ -262,7 +271,6 @@ class WeightedEnergyCostOptionsFlow(config_entries.OptionsFlow):
         """Manage the options."""
         return await self.async_step_grid_import()
 
-    # Reuse logic from ConfigFlow by providing similar step methods
     async def _async_show_type_step(
         self, step_id, key, allow_dashboard=False, default=SOURCE_TYPE_ENTITY
     ):
@@ -296,11 +304,17 @@ class WeightedEnergyCostOptionsFlow(config_entries.OptionsFlow):
         current_val = self.data.get(value_key)
 
         if source_type == SOURCE_TYPE_FIXED:
+            default_num = 0.0
+            if current_val is not None:
+                try:
+                    default_num = float(current_val)
+                except (ValueError, TypeError):
+                    default_num = 0.0
+
             schema = vol.Schema(
                 {
                     vol.Required(
-                        value_key,
-                        default=float(current_val) if current_val is not None else 0.0,
+                        value_key, default=default_num
                     ): selector.NumberSelector(
                         selector.NumberSelectorConfig(
                             mode=selector.NumberSelectorMode.BOX, step=0.001
@@ -312,7 +326,8 @@ class WeightedEnergyCostOptionsFlow(config_entries.OptionsFlow):
             schema = vol.Schema(
                 {
                     vol.Required(
-                        value_key, default=current_val
+                        value_key,
+                        default=current_val if isinstance(current_val, str) else None,
                     ): selector.EntitySelector(
                         selector.EntitySelectorConfig(
                             domain="sensor", device_class=SensorDeviceClass.ENERGY
@@ -324,7 +339,8 @@ class WeightedEnergyCostOptionsFlow(config_entries.OptionsFlow):
             schema = vol.Schema(
                 {
                     vol.Required(
-                        value_key, default=current_val
+                        value_key,
+                        default=current_val if isinstance(current_val, str) else None,
                     ): selector.EntitySelector(
                         selector.EntitySelectorConfig(domain="sensor")
                     )
