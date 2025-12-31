@@ -24,9 +24,16 @@ This approach automatically accounts for battery round-trip inefficiencies by us
 
 ## Installation
 
+### Via HACS (Recommended)
+1. Ensure [HACS](https://hacs.xyz/) is installed.
+2. Go to **HACS** -> **Integrations** -> **Top Right Menu** -> **Custom Repositories**.
+3. Add `https://github.com/cbrosius/weighted_energy_cost_sensor` with category `Integration`.
+4. Click **Install**.
+5. Restart Home Assistant.
+
+### Manual Installation
 1. Copy the `weighted_energy_cost` folder to your `custom_components` directory.
 2. Restart Home Assistant.
-3. Go to Settings -> Devices & Services -> Add Integration -> Search for "Weighted Energy Cost Sensor".
 
 ## Configuration
 
